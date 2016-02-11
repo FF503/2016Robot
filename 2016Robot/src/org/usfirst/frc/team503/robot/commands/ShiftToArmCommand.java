@@ -1,34 +1,33 @@
 package org.usfirst.frc.team503.robot.commands;
 
 import org.usfirst.frc.team503.robot.OI;
-import org.usfirst.frc.team503.robot.subsystems.IntakeSubsystem;
-import org.usfirst.frc.team503.robot.subsystems.ShooterSubsystem;
+import org.usfirst.frc.team503.robot.RobotMap;
+import org.usfirst.frc.team503.robot.subsystems.ArmSubsystem;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class BallOutCommand extends Command {
+public class ShiftToArmCommand extends Command {
 
-    public BallOutCommand() {
+    public ShiftToArmCommand() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	if (OI.climberIntakeMode == 0){
+    	if(RobotMap.armWinchMode == false){
     		end();
     	}
-    	else if(ShooterSubsystem.deflectorMode == 0){
-    		ShooterSubsystem.instance.raiseDeflector();
+    	else{
+    		ArmSubsystem.instance.armMode();
     	}
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	IntakeSubsystem.instance.intakeOut();
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -38,7 +37,7 @@ public class BallOutCommand extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	IntakeSubsystem.instance.intakeStop();
+    	RobotMap.armWinchMode = false;
     }
 
     // Called when another command which requires one or more of the same

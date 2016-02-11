@@ -25,29 +25,29 @@ public class DriveStraightDistanceCommand extends Command {
     protected void initialize() {
     	DrivetrainSubsystem.instance.enable();
     	DrivetrainSubsystem.instance.setSetpoint(inches);
-    	DrivetrainSubsystem.instance.driveEncoder.reset();
-    	initAngle=NavSensorSubsystem.instance.ahrs.getFusedHeading();
+    	initAngle=NavSensorSubsystem.ahrs.getFusedHeading();
     	DrivetrainSubsystem.instance.tankDrive(-RobotMap.AUTON_DRIVE_SPEED, -RobotMap.AUTON_DRIVE_SPEED, RobotMap.SENSITIVITY);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(NavSensorSubsystem.instance.ahrs.getFusedHeading()>(initAngle+RobotMap.COMPASS_TOLERANCE)%360){
-    		DrivetrainSubsystem.instance.tankDrive(0,-RobotMap.DRIVE_PID_OUTPUT, RobotMap.SENSITIVITY);
+    	if(NavSensorSubsystem.ahrs.getFusedHeading()>(initAngle+RobotMap.COMPASS_TOLERANCE)%360){
+    		DrivetrainSubsystem.instance.tankDrive(-RobotMap.drivePIDOutput,-RobotMap.drivePIDOutput-RobotMap.AUTON_DRIVE_SPEED, RobotMap.SENSITIVITY);
     	}
-    	else if(NavSensorSubsystem.instance.ahrs.getFusedHeading()<(((initAngle-RobotMap.COMPASS_TOLERANCE)<0)?(initAngle-RobotMap.COMPASS_TOLERANCE)%360+360:initAngle-RobotMap.COMPASS_TOLERANCE)){
-    		DrivetrainSubsystem.instance.tankDrive(-RobotMap.DRIVE_PID_OUTPUT, 0, RobotMap.SENSITIVITY);
+    	else if(NavSensorSubsystem.ahrs.getFusedHeading()<(((initAngle-RobotMap.COMPASS_TOLERANCE)<0)?(initAngle-RobotMap.COMPASS_TOLERANCE)%360+360:initAngle-RobotMap.COMPASS_TOLERANCE)){
+    		DrivetrainSubsystem.instance.tankDrive(-RobotMap.drivePIDOutput-RobotMap.AUTON_DRIVE_SPEED,-RobotMap.drivePIDOutput, RobotMap.SENSITIVITY);
     	}
     	else{
-    		DrivetrainSubsystem.instance.tankDrive(-RobotMap.DRIVE_PID_OUTPUT, -RobotMap.DRIVE_PID_OUTPUT, RobotMap.SENSITIVITY);
+    		DrivetrainSubsystem.instance.tankDrive(-RobotMap.drivePIDOutput, -RobotMap.drivePIDOutput, RobotMap.SENSITIVITY);
     	}
     	NavSensorSubsystem.instance.sendDashboardData();
-    	SmartDashboard.putNumber("PID_OUTPUT", RobotMap.DRIVE_PID_OUTPUT);
+    	SmartDashboard.putNumber("drivePIDOutput", RobotMap.drivePIDOutput);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
         return (DrivetrainSubsystem.instance.onTarget());
+        
     }
 
     // Called once after isFinished returns true

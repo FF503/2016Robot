@@ -24,7 +24,7 @@ public class TeleopTankDriveCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	DrivetrainSubsystem.instance.tankDrive(OI.getLeftY(), OI.getRightY(), RobotMap.SENSITIVITY);
+    	DrivetrainSubsystem.instance.tankDrive(OI.getDriverLeftY(), OI.getDriverRightY(), RobotMap.SENSITIVITY);
     }
 
     // Make this return true when this Command no longer needs to run execute()

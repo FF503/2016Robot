@@ -70,7 +70,7 @@ public class DrivetrainSubsystem extends PIDSubsystem implements PIDOutput, PIDS
 	
 	public static DrivetrainSubsystem instance = new DrivetrainSubsystem();
 
-	private void setMotorOutputs(double leftSpeed, double rightSpeed, boolean sensitivity){
+	public void setMotorOutputs(double leftSpeed, double rightSpeed, boolean sensitivity){
 		if(sensitivity){
 			leftSpeed = setDriveSensitivity(leftSpeed);
 			rightSpeed = setDriveSensitivity(rightSpeed);
@@ -84,6 +84,19 @@ public class DrivetrainSubsystem extends PIDSubsystem implements PIDOutput, PIDS
 	private double setDriveSensitivity(double input){
 		input = RobotMap.DRIVE_SENSITIVITY*Math.pow(input, 3) + (1-RobotMap.DRIVE_SENSITIVITY)*input;
 		return input;
+	}
+	
+	public void shiftGears(boolean gear){
+		if(gear){
+			drivetrainLeftSolenoid.set(false);
+			drivetrainRightSolenoid.set(false);
+			RobotMap.currentGear = false;
+		}
+		else{
+			drivetrainLeftSolenoid.set(true);
+			drivetrainRightSolenoid.set(true);
+			RobotMap.currentGear = true;
+		}
 	}
 	
     private double limit(double num) {
@@ -209,7 +222,7 @@ public class DrivetrainSubsystem extends PIDSubsystem implements PIDOutput, PIDS
 	@Override
 	protected void usePIDOutput(double output) {
 		// TODO Auto-generated method stub
-		RobotMap.DRIVE_PID_OUTPUT = output;
+		RobotMap.drivePIDOutput = output;
 	}  
 	
 }

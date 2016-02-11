@@ -2,7 +2,7 @@
 package org.usfirst.frc.team503.robot;
 
 import org.usfirst.frc.team503.robot.OI.Mode;
-import org.usfirst.frc.team503.robot.commands.TeleopTankDriveCommand;
+import org.usfirst.frc.team503.robot.commands.ResetSubsystemsCommand;
 import org.usfirst.frc.team503.robot.subsystems.AutonSelectorSubsystem;
 import org.usfirst.frc.team503.robot.subsystems.DrivetrainSubsystem;
 import org.usfirst.frc.team503.robot.subsystems.MicrosoftCameraSubsystem;
@@ -31,9 +31,7 @@ public class Robot extends IterativeRobot {
     	MicrosoftCameraSubsystem.instance.setQuality(50);
     	MicrosoftCameraSubsystem.instance.startCapture();
     	AutonSelectorSubsystem.instance.chooseAuton();
-    	NavSensorSubsystem.ahrs.reset();
-    	DrivetrainSubsystem.driveEncoder.reset();
-    	OI.init();
+    	(new ResetSubsystemsCommand()).start();
     	// instantiate the command used for the autonomous period
     }
 	
@@ -58,7 +56,7 @@ public class Robot extends IterativeRobot {
     	
     	SmartDashboard.putNumber("endoder value", DrivetrainSubsystem.instance.getEncoderDistance());
     	SmartDashboard.putNumber("encoder pulse", DrivetrainSubsystem.instance.getEncoderPulse());
-    	SmartDashboard.putNumber("drive pid output", RobotMap.DRIVE_PID_OUTPUT);
+    	SmartDashboard.putNumber("drive pid output", RobotMap.drivePIDOutput);
     }
     
 
@@ -68,9 +66,8 @@ public class Robot extends IterativeRobot {
         // continue until interrupted by another command, remove
         // this line or comment it out.
     	OI.mode = Mode.TELEOP;
-    	DrivetrainSubsystem.driveEncoder.reset();
-    	//(new TeleopArcadeDriveCommand()).start();
-    	(new TeleopTankDriveCommand()).start();
+    	(new ResetSubsystemsCommand()).start();
+    	OI.initialize();
     }
 
     /**
@@ -79,6 +76,7 @@ public class Robot extends IterativeRobot {
      */
     public void disabledInit(){	
     	OI.mode = Mode.POSTMATCH;
+    	(new ResetSubsystemsCommand()).start();
     }
 
     /**
@@ -92,6 +90,7 @@ public class Robot extends IterativeRobot {
     	SmartDashboard.putNumber("endoder value", DrivetrainSubsystem.instance.getEncoderDistance());
     	SmartDashboard.putNumber("encoder pulse", DrivetrainSubsystem.instance.getEncoderPulse());
     	SmartDashboard.putNumber("dist. to goal", VisionProcessor.instance.approximateDistance());
+    	
     	Scheduler.getInstance().run();
     }
     

@@ -24,7 +24,7 @@ public class TeleopArcadeDriveCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	DrivetrainSubsystem.instance.arcadeDrive(OI.getLeftY(), OI.getLeftX(), RobotMap.SENSITIVITY);
+    	DrivetrainSubsystem.instance.arcadeDrive(OI.getDriverLeftY(), OI.getDriverLeftX(), RobotMap.SENSITIVITY);
     }
 
     // Make this return true when this Command no longer needs to run execute()

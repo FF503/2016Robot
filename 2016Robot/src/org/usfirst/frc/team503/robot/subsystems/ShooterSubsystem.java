@@ -25,7 +25,7 @@ public class ShooterSubsystem extends Subsystem {
 	public static int deflectorMode = 0; // 0 down, 1 up
 	private static CANTalon rightShootMotor;
 	private static CANTalon leftShootMotor;
-	private static Relay indexerMotor;
+	private static CANTalon indexerMotor;
 	private static DigitalInput indexerProximitySwitch;
 	private static DoubleSolenoid deflectorShifter;
 	public static Encoder shooterEncoder;
@@ -33,7 +33,7 @@ public class ShooterSubsystem extends Subsystem {
 	private ShooterSubsystem(){
 		rightShootMotor = new CANTalon(RobotMap.rightShootMotorPort);
 		leftShootMotor = new CANTalon(RobotMap.leftShootMotorPort);
-		indexerMotor = new Relay(RobotMap.indexerMotorPort);
+		indexerMotor = new CANTalon(RobotMap.indexerMotorPort);
 		shooterEncoder =  new Encoder(RobotMap.shooterEncoderPortA, RobotMap.shooterEncoderPortB, RobotMap.shooterEncoderReverseDirection,RobotMap.encoderType);
 		indexerProximitySwitch = new DigitalInput(RobotMap.indexerProximitySwitchPort);
 		deflectorShifter = new DoubleSolenoid( RobotMap.deflectorSolenoidPortA, RobotMap.deflectorSolenoidPortB);
@@ -70,13 +70,13 @@ public class ShooterSubsystem extends Subsystem {
     	rightShootMotor.set(0);
     }
     
-    public void runIndexer(boolean on){
+    public void setIndexer(boolean on){
     	if(on){
-    		indexerMotor.set(Relay.Value.kForward);
+        	indexerMotor.set(RobotMap.INDEXER_SPEED);
     	}
     	else{
-    		indexerMotor.set(Relay.Value.kOff);
-    	}	
+    		indexerMotor.set(0);
+    	}
     }
     
     public double getShooterEncoder(){

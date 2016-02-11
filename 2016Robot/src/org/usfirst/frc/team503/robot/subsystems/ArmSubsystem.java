@@ -36,7 +36,7 @@ public class ArmSubsystem extends PIDSubsystem{
 		
 		armAngleEncoder =  new Encoder(RobotMap.armEncoderPortA, RobotMap.armEncoderPortB, RobotMap.armEncoderReverseDirection,RobotMap.encoderType);
 		armWinchMotor = new CANTalon(RobotMap.armWinchMotorPort);
-		extender = new Relay (RobotMap.extenderMotorPort);
+		extender = new Relay (RobotMap.extenderRelayPort);
 		armWinchShifter = new Solenoid(RobotMap.armWinchSolenoidPort);
 		extenderEncoder = new Encoder(RobotMap.extenderEncoderPortA, RobotMap.extenderEncoderPortB, RobotMap.extenderEncoderReverseDirection, RobotMap.encoderType);
 		
@@ -59,7 +59,7 @@ public class ArmSubsystem extends PIDSubsystem{
 	public void extenderExtend(){
 		extender.set(Relay.Value.kForward);
 	}
-	public void extenderStop(){
+	public void extenderOff(){
 		extender.set(Relay.Value.kOff);
 	}
 	public void extenderRetract(){
@@ -67,7 +67,7 @@ public class ArmSubsystem extends PIDSubsystem{
 	}
 	
 	public static enum ArmPosition {
-		TOP(60), MID(30), BOTTOM(0);
+		TOP(RobotMap.ARM_POSITION_TOP), MID(RobotMap.ARM_POSITION_MID), BOT(RobotMap.ARM_POSITION_BOT);
 		private double position;
 
 		private ArmPosition(double position) {
@@ -90,10 +90,10 @@ public class ArmSubsystem extends PIDSubsystem{
 		
 		while(Math.abs(instance.getArmAngleEncoderError())>RobotMap.ARM_TOLERANCE){
 			if(getArmAngle()< position.position){
-				armWinchMotor.set(RobotMap.ARM_PID_OUTPUT);
+				armWinchMotor.set(RobotMap.armPIDOutput);
 			}
 			else if(getArmAngle()> position.position){
-				armWinchMotor.set(-RobotMap.ARM_PID_OUTPUT);
+				armWinchMotor.set(-RobotMap.armPIDOutput);
 			}
 			else{
 				armWinchMotor.set(0);
@@ -111,6 +111,10 @@ public class ArmSubsystem extends PIDSubsystem{
 	
 	public double getArmAngleEncoderError(){
 		return ((PIDInterface) instance).getError();
+	}
+	
+	public void setArmMotor(double power){
+		armWinchMotor.set(power);
 	}
 
     // Put methods for controlling this subsystem
@@ -131,7 +135,7 @@ public class ArmSubsystem extends PIDSubsystem{
 	@Override
 	protected void usePIDOutput(double output) {
 		// TODO Auto-generated method stub
-		RobotMap.ARM_PID_OUTPUT = output;
+		RobotMap.armPIDOutput = output;
 	}
 }
 

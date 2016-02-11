@@ -1,11 +1,9 @@
 package org.usfirst.frc.team503.robot.commands;
 
-import org.usfirst.frc.team503.robot.OI;
+import org.usfirst.frc.team503.robot.RobotMap;
 import org.usfirst.frc.team503.robot.subsystems.ArmSubsystem;
 import org.usfirst.frc.team503.robot.subsystems.ArmSubsystem.ArmPosition;
-import org.usfirst.frc.team503.robot.subsystems.DrivetrainSubsystem;
 
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -20,20 +18,13 @@ public class ClimbCommand extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	if(OI.climberIntakeMode == 1){
-    		end();
+    	if(RobotMap.armWinchMode == false){
+    		end(); //automatically change;
     	}
     	else{
     		ArmSubsystem.instance.goToArmPosition(ArmPosition.TOP);
-    		ArmSubsystem.instance.extenderExtend();
-    		(new DriveStraightDistanceCommand(.5)).start();
-    		Timer.delay(.25);
-    		ArmSubsystem.instance.extenderStop();
-    		Timer.delay(.25);
-    		ArmSubsystem.instance.extenderRetract();
-    		Timer.delay(.5);
-    		ArmSubsystem.instance.extenderStop();
-    		end();
+    		
+    		
     	}
     }
 

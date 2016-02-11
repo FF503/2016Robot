@@ -10,7 +10,6 @@ public class TargetAndShootCommandGroup extends CommandGroup {
     public  TargetAndShootCommandGroup() {
     	addSequential(new AimCommand());
     	addSequential(new ShootCommand());
-    	addSequential(new LowerShooterCommand());
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());

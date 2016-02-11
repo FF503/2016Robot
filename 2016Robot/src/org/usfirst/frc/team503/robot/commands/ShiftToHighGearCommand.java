@@ -1,25 +1,29 @@
 package org.usfirst.frc.team503.robot.commands;
 
-import org.usfirst.frc.team503.robot.subsystems.ShooterSubsystem;
+import org.usfirst.frc.team503.robot.RobotMap;
+import org.usfirst.frc.team503.robot.subsystems.DrivetrainSubsystem;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class LowerShooterCommand extends Command {
+public class ShiftToHighGearCommand extends Command {
 
-    public LowerShooterCommand() {
+    public ShiftToHighGearCommand() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	if(ShooterSubsystem.deflectorMode == 1){
-    		ShooterSubsystem.instance.lowerDeflector();
+    	if(RobotMap.currentGear == true){
+    		end();
     	}
-    	end();
+    	else{
+    		DrivetrainSubsystem.instance.shiftGears(true);
+    	}
+    	
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -28,7 +32,7 @@ public class LowerShooterCommand extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     // Called once after isFinished returns true

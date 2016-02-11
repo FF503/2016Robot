@@ -64,32 +64,50 @@ public class RobotMap {
 	public static final double SHOOTER_DISTANCE_PER_PULSE = 1;
 	
 	public static final int drivetrainLeftSolenoidPort = 1;
-	public static final int drivetrainRightSolenoidPort = 2;
+	public static final int drivetrainRightSolenoidPort = 0;
 	
-	public static final int deflectorSolenoidPortA = 0;
-	public static final int deflectorSolenoidPortB = 1;
+	public static final int deflectorSolenoidPortA = 3;
+	public static final int deflectorSolenoidPortB = 4;
 	
 	public static final int rightShootMotorPort = 0;
 	public static final int leftShootMotorPort = 0;
 	public static final int indexerMotorPort = 0;//Update after figuring out port.
 	public static final int indexerProximitySwitchPort = 1;
 	
-	public static final int intakeMotorPort = 0; //thingy thing
+	public static final int intakeRelayPort = 6; //thingy thing
+	public static final int intakeProximitySwitchPort = 0;
 	public static final int armWinchMotorPort = 0; //need to change thingy thing
-	public static final int armWinchSolenoidPort = 0; //change
-	public static final int extenderMotorPort = 0; //also need to change thingy thing
+	public static final int armWinchSolenoidPort = 2; //change
+	public static final int extenderRelayPort = 7; //also need to change thingy thing
+	
+	public static boolean armWinchMode = false; // true is winch, false is arm
+	public static boolean deflectorMode = false; // false down, true up
+	public static boolean extenderPosition = false; //false is in , true is out
+	public static boolean currentGear = false; // false is low, true is high
 	
 	public static final boolean SENSITIVITY = true;
-	public static final double DRIVE_SENSITIVITY = .5;
-	public static final double AUTON_DRIVE_SPEED = .7;
-	public static final double COMPASS_TOLERANCE = .25;
+	public static final double DRIVE_SENSITIVITY = .7;
+	
 	public static final double JOYSTICK_TOLERANCE = .15;
 	
 	public static final double ARM_SPEED = .5;
 	public static final double ARM_PID_RANGE = 15;
 	public static final double ARM_TOLERANCE = 2;
+	public static final double ARM_SENSITIVITY = .8;
+	public static final double ARM_POSITION_TOP = 60;
+	public static final double ARM_POSITION_MID = 30;
+	public static final double ARM_POSITION_BOT = 0;
+	
+	public static final double INDEXER_SPEED = 1;
 	
 	public static final double SHOOTER_SPEED = .5;
+	public static final double SHOOT_TIME = 3.0;
+	
+	public static final int EXTENDER_OUT = 500; // change
+	public static final int EXTENDER_IN = 0; // change
+	
+	public static final double AUTON_DRIVE_SPEED = .7;
+	public static final double COMPASS_TOLERANCE = .25;
 	
 	public static final double DRIVE_kP = 0.02;
 	public static final double DRIVE_kI = 0;
@@ -107,7 +125,7 @@ public class RobotMap {
 	public static final double TURN_PID_TOLERANCE = 2;
 	public static final double ARM_PID_TOLERANCE = 2;	
 	
-	public static double DRIVE_PID_OUTPUT = 0;
-	public static double ARM_PID_OUTPUT = 0;
-	public static double TURN_PID_OUTPUT = 0;
+	public static double drivePIDOutput = 0;
+	public static double armPIDOutput = 0;
+	public static double turnPIDOutput = 0;
 }

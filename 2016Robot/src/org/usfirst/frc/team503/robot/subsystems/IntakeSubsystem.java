@@ -16,8 +16,8 @@ public class IntakeSubsystem extends Subsystem {
 	private static DigitalInput intakeProximitySwitch;
 	
 	private IntakeSubsystem(){
-		intake = new Relay(RobotMap.intakeMotorPort);
-		intakeProximitySwitch = new DigitalInput(1);
+		intake = new Relay(RobotMap.intakeRelayPort);
+		intakeProximitySwitch = new DigitalInput(RobotMap.intakeProximitySwitchPort);
 	}
 	
 	public static IntakeSubsystem instance = new IntakeSubsystem();
