@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<classpath>
-	<classpathentry kind="src" path="src"/>
-	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry exported="true" kind="var" path="navx-mxp"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/Owner/wpilib/java/current/lib/WPILib.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/Owner/wpilib/java/current/lib/NetworkTables.jar"/>
-	<classpathentry kind="output" path="bin"/>
-</classpath>
