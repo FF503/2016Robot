@@ -4,6 +4,8 @@ import org.usfirst.frc.team503.robot.Robot;
 import org.usfirst.frc.team503.robot.RobotMap;
 //import org.usfirst.frc.team503.robot.RobotHardware;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+
 //import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Solenoid;
@@ -38,10 +40,10 @@ public class DrivetrainSubsystem extends PIDSubsystem{
 			leftSpeed = setDriveSensitivity(leftSpeed);
 			rightSpeed = setDriveSensitivity(rightSpeed);
 		}		
-		Robot.bot.getCANTalonObj(1).set(-leftSpeed);   // front Left 
-		Robot.bot.getCANTalonObj(2).set(rightSpeed);  // front Right 
-		Robot.bot.getCANTalonObj(3).set(-leftSpeed);   // back Left 
-		Robot.bot.getCANTalonObj(4).set(rightSpeed);  // back Right 
+		Robot.bot.getCANTalonObj(1).set(ControlMode.PercentOutput, -leftSpeed);   // front Left 
+		Robot.bot.getCANTalonObj(2).set(ControlMode.PercentOutput, rightSpeed);  // front Right 
+		Robot.bot.getCANTalonObj(3).set(ControlMode.PercentOutput, -leftSpeed);   // back Left 
+		Robot.bot.getCANTalonObj(4).set(ControlMode.PercentOutput, rightSpeed);  // back Right 
 	}
 	
 	private static double setDriveSensitivity(double input){

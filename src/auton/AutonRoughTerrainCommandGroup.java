@@ -13,9 +13,9 @@ public class AutonRoughTerrainCommandGroup extends CommandGroup {
     	//By Nithisha 
         	
     	//addSequential(new LowerArmCommand())//use if more stable than arm up
-    	addSequential(new DriveStraightDistanceCommand(145,3.3));// 141
-    	//addSequential(new DriveStraightDistanceCommand(100));
-    		//may be knocked off track
+		addSequential(new DriveStraightDistanceCommand(145, 3.3));// 141
+		// addSequential(new DriveStraightDistanceCommand(100));
+		// may be knocked off track
     	addSequential(new PathSorter());
 
     	

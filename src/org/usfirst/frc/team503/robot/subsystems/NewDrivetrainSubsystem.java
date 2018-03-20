@@ -3,6 +3,9 @@ package org.usfirst.frc.team503.robot.subsystems;
 import org.usfirst.frc.team503.robot.Robot;
 import org.usfirst.frc.team503.robot.RobotMap;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
+
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
@@ -39,17 +42,26 @@ public class NewDrivetrainSubsystem extends PIDSubsystem {
 		}	
 		SmartDashboard.putNumber("leftSpeed", leftSpeed);
 		SmartDashboard.putNumber("rightSpeed", rightSpeed);
-		Robot.bot.getCANTalonObj(1).set(-leftSpeed);   // front Left 
-		Robot.bot.getCANTalonObj(2).set(rightSpeed);  // front Right 
-		Robot.bot.getCANTalonObj(3).set(-leftSpeed);   // back Left 
-		Robot.bot.getCANTalonObj(4).set(rightSpeed);  // back Right 
+		Robot.bot.getCANTalonObj(1).set(ControlMode.PercentOutput, -leftSpeed);   // front Left 
+		Robot.bot.getCANTalonObj(2).set(ControlMode.PercentOutput, rightSpeed);  // front Right 
+		Robot.bot.getCANTalonObj(3).set(ControlMode.PercentOutput, -leftSpeed);   // back Left 
+		Robot.bot.getCANTalonObj(4).set(ControlMode.PercentOutput, rightSpeed);  // back Right 
 	}
 	
 	public static void motorBrake(boolean bool){
-		Robot.bot.getCANTalonObj(1).enableBrakeMode(bool);
-		Robot.bot.getCANTalonObj(2).enableBrakeMode(bool);
-		Robot.bot.getCANTalonObj(3).enableBrakeMode(bool);
-		Robot.bot.getCANTalonObj(4).enableBrakeMode(bool);
+		if(bool) {
+			Robot.bot.getCANTalonObj(1).setNeutralMode(NeutralMode.Brake);
+			Robot.bot.getCANTalonObj(2).setNeutralMode(NeutralMode.Brake);
+			Robot.bot.getCANTalonObj(3).setNeutralMode(NeutralMode.Brake);
+			Robot.bot.getCANTalonObj(4).setNeutralMode(NeutralMode.Brake);
+		} else {
+			Robot.bot.getCANTalonObj(1).setNeutralMode(NeutralMode.Coast);
+			Robot.bot.getCANTalonObj(2).setNeutralMode(NeutralMode.Coast);
+			Robot.bot.getCANTalonObj(3).setNeutralMode(NeutralMode.Coast);
+			Robot.bot.getCANTalonObj(4).setNeutralMode(NeutralMode.Coast);
+		}
+		
+		
 	}
 	
 	private double setDriveSensitivity(double input){

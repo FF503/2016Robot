@@ -148,5 +148,5 @@ public class RobotMap {
 	public static double armPIDOutput = 0;
 	public static double visionTurnPIDOutput = 0;
 	public static double OriginalCompassHeading = 0; 
-	public static double YawAfterDefense = 0; 
+	public static double YawAfterDefense = 0;
 }
