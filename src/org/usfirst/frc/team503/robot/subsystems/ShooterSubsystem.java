@@ -41,30 +41,26 @@ public class ShooterSubsystem extends Subsystem {
 	public static Encoder shooterEncoder;
 
 	private ShooterSubsystem() {
-		// super("ShooterSubsystem", RobotMap.Shoot_kP, RobotMap.Shoot_kI,
-		// RobotMap.Shoot_kD);
+		// super("ShooterSubsystem", RobotMap.Shoot_kP, RobotMap.Shoot_kI, RobotMap.Shoot_kD);
 		rightShootMotor = Robot.bot.getRightShooterObj();
 		// setOutputRange(.2,.8);
 		// setInputRange(-5,11000);
-		/*
-		 * rightShootMotor.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
-		 * rightShootMotor.setEncPosition(0); rightShootMotor.setPosition(0);
-		 */
 
-		//status = rightShootMotor.isSensorPresent(FeedbackDevice.QuadEncoder);
-		// leftShootMotor = new CANTalon(RobotMap.leftShootMotorPort);
+
+		// rightShootMotor.setEncPosition(0);
+		// rightShootMotor.setPosition(0);
+
 		leftShootMotor = Robot.bot.getLeftShooterObj();
 
 		status = rightShootMotor.isSensorPresent(CANTalon.FeedbackDevice.QuadEncoder);
-		
-//		ORIGINAL CODE, PLS REVIEW
-//		rightShootMotor.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
-//		rightShootMotor.configEncoderCodesPerRev(1024); // was 360
-//		rightShootMotor.setProfile(0);
-//		rightShootMotor.setF(0.004657); // was 0.029 , 0.004657
-//		rightShootMotor.setP(.24); // was .3000 ,.2
-//		rightShootMotor.setI(.0000025);
 
+		// ORIGINAL CODE, PLS REVIEW
+		// rightShootMotor.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
+		// rightShootMotor.configEncoderCodesPerRev(1024); // was 360
+		// rightShootMotor.setProfile(0);
+		// rightShootMotor.setF(0.004657); // was 0.029 , 0.004657
+		// rightShootMotor.setP(.24); // was .3000 ,.2
+		// rightShootMotor.setI(.0000025);
 
 		rightShootMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 0);
 		rightShootMotor.configEncoderCodesPerRev(1024); // was 360
@@ -73,16 +69,12 @@ public class ShooterSubsystem extends Subsystem {
 		rightShootMotor.config_kP(0, .24, 0); // was .3000 ,.2
 		rightShootMotor.config_kI(0, .0000025, 0);
 		rightShootMotor.config_kD(0, 0, 0);
-		
-		
-		
+
 		// rightShootMotor.changeControlMode(TalonControlMode.Speed);
 		// leftShootMotor.changeControlMode(TalonControlMode.Speed);
 
 		/*
-		 * rightShootMotor.changeControlMode(TalonControlMode.Speed);
-		 * leftShootMotor.changeControlMode(TalonControlMode.Speed);
-		 * leftShootMotor.setF(.021); rightShootMotor.setF(.021);
+		 * rightShootMotor.changeControlMode(TalonControlMode.Speed); leftShootMotor.changeControlMode(TalonControlMode.Speed); leftShootMotor.setF(.021); rightShootMotor.setF(.021);
 		 */
 
 		// shooterEncoder = new Encoder(0, 1, false, EncodingType.k4X);
@@ -175,9 +167,7 @@ public class ShooterSubsystem extends Subsystem {
 
 	public void setShooter(double speed) {
 		/*
-		 * ORIGINAL CODE: leftShootMotor.changeControlMode(TalonControlMode.Follower);
-		 * leftShootMotor.set(7); // must be set to talon ID of master (right shooter =
-		 * 2) leftShootMotor.enableBrakeMode(false);
+		 * ORIGINAL CODE: leftShootMotor.changeControlMode(TalonControlMode.Follower); leftShootMotor.set(7); // must be set to talon ID of master (right shooter = 2) leftShootMotor.enableBrakeMode(false);
 		 */
 		leftShootMotor.set(ControlMode.Follower, 7);
 		leftShootMotor.setNeutralMode(NeutralMode.Coast);
@@ -200,15 +190,12 @@ public class ShooterSubsystem extends Subsystem {
 	}
 
 	public void runShooter(boolean run) {
-		/*
-		 ****** ORIGINAL CODE HAS IT AS PERCENT POWER IDK WHY SO I'LL JUST LEAVE IT*******
-		 * rightShootMotor.changeControlMode(TalonControlMode.PercentVbus);
-		 * leftShootMotor.changeControlMode(TalonControlMode.PercentVbus);
-		 */
+		
+
 		if (run) {
 			// SmartDashboard.putBoolean("ShooterRunning", true);
 			leftShootMotor.set(ControlMode.PercentOutput, RobotMap.SHOOTER_SPEED);
-			rightShootMotor.set(ControlMode.Velocity, RobotMap.SHOOTER_SPEED);
+			rightShootMotor.set(ControlMode.PercentOutput, RobotMap.SHOOTER_SPEED);
 			RobotMap.shooterRunning = true;
 		} else {
 			// SmartDashboard.putBoolean("ShooterRunning", false);
@@ -283,11 +270,9 @@ public class ShooterSubsystem extends Subsystem {
 	}
 	// @Override
 	/*
-	 * protected double returnPIDInput() { // TODO Auto-generated method stub return
-	 * getShootSpeedRight(); }
+	 * protected double returnPIDInput() { // TODO Auto-generated method stub return getShootSpeedRight(); }
 	 * 
-	 * @Override protected void usePIDOutput(double output) { // TODO Auto-generated
-	 * method stub
+	 * @Override protected void usePIDOutput(double output) { // TODO Auto-generated method stub
 	 * 
 	 * RobotMap.shootPIDOutput = output; }
 	 */

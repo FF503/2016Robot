@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
- *
+ *fr
  */
 public class MicrosoftCameraSubsystem extends Subsystem {
 
@@ -16,14 +16,16 @@ public class MicrosoftCameraSubsystem extends Subsystem {
 	private MicrosoftCameraSubsystem() {
 		server = CameraServer.getInstance();
 	}
-
+	
 	public static MicrosoftCameraSubsystem instance = new MicrosoftCameraSubsystem();
 
 	public void startCapture() {
-		server.startAutomaticCapture("cam0");// cam2 comp bot, cam0 practice bot
-	}
 
+		server.startAutomaticCapture();// cam2 comp bot, cam0 practice bot
+	}
+	
 	public void setQuality(int qual) {
+
 		server.setQuality(qual);
 	}
 

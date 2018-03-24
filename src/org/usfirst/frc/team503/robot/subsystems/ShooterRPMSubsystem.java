@@ -29,7 +29,6 @@ public class ShooterRPMSubsystem extends PIDSubsystem {
 	public static TalonSRX leftShootMotor;
 	public static TalonSRX indexerMotor;
 
-	
 	public static FeedbackDeviceStatus status;
 
 	// private static DigitalInput indexerProximitySwitch;
@@ -38,14 +37,12 @@ public class ShooterRPMSubsystem extends PIDSubsystem {
 
 	public ShooterRPMSubsystem() {
 		super("ShooterSubsystem", RobotMap.Shoot_kP, RobotMap.Shoot_kI, RobotMap.Shoot_kD);
-
-		// rightShootMotor = new CANTalon(RobotMap.rightShootMotorPort);
 		rightShootMotor = Robot.bot.getRightShooterObj();
 
-		/*
-		 * rightShootMotor.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
-		 * rightShootMotor.setEncPosition(0); rightShootMotor.setPosition(0);
-		 */
+		// ALREADY COMMENTED
+		// rightShootMotor.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
+		// rightShootMotor.setEncPosition(0); rightShootMotor.setPosition(0);
+	
 
 		status = rightShootMotor.isSensorPresent(FeedbackDevice.QuadEncoder);
 		// leftShootMotor = new CANTalon(RobotMap.leftShootMotorPort);
@@ -59,7 +56,7 @@ public class ShooterRPMSubsystem extends PIDSubsystem {
 		// rightShootMotor.setD(0);
 
 		rightShootMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 0);
-		rightShootMotor.config_kF(0, 0, 0); //value, port (0), timeout in ms
+		rightShootMotor.config_kF(0, 0, 0); // value, port (0), timeout in ms
 		rightShootMotor.config_kP(0, 0, 0);
 		rightShootMotor.config_kI(0, 0, 0);
 		rightShootMotor.config_kD(0, 0, 0);
@@ -69,19 +66,18 @@ public class ShooterRPMSubsystem extends PIDSubsystem {
 
 		status = rightShootMotor.isSensorPresent(FeedbackDevice.QuadEncoder);
 
-		/*
-		 * rightShootMotor.changeControlMode(TalonControlMode.Speed);
-		 * leftShootMotor.changeControlMode(TalonControlMode.Speed);
-		 * leftShootMotor.setF(.021); rightShootMotor.setF(.021);
-		 */
+		// ALWAYS WAS COMMENTED
+		// rightShootMotor.changeControlMode(TalonControlMode.Speed);
+		// leftShootMotor.changeControlMode(TalonControlMode.Speed);
+		// leftShootMotor.setF(.021);
+		// rightShootMotor.setF(.021);
 
 		// rightShootMotor.configEncoderCodesPerRev(1);
 		// shooterEncoder = new Encoder(0, 1, false, EncodingType.k4X);
 		// shooterEncoder.setDistancePerPulse(1.0/2048);
 
 		indexerMotor = new TalonSRX(RobotMap.indexerMotorPort);
-		// indexerProximitySwitch = new
-		// DigitalInput(RobotMap.indexerProximitySwitchPort);
+		// indexerProximitySwitch = new DigitalInput(RobotMap.indexerProximitySwitchPort);
 		deflectorShifter = new Solenoid(1);
 	}
 
@@ -109,9 +105,10 @@ public class ShooterRPMSubsystem extends PIDSubsystem {
 		}
 	}
 
-	/*
-	 * public boolean isBallIndexed(){ return indexerProximitySwitch.get(); }
-	 */
+	// WAS ALREADY COMMENTED
+	// public boolean isBallIndexed() {
+	// return indexerProximitySwitch.get();
+	// }
 
 	public void setShooter(double speed) {
 		// OLD CODE:
@@ -175,20 +172,20 @@ public class ShooterRPMSubsystem extends PIDSubsystem {
 	}
 
 	public void initDefaultCommand() {
-		// Set the default command for a subsystem here.
-		// setDefaultCommand(new MySpecialCommand());
+
 	}
 
-	/*
-	 * @Override protected double returnPIDInput() { // TODO Auto-generated method
-	 * stub return getShootSpeedLeft(); }
-	 * 
-	 * @Override protected void usePIDOutput(double output) {
-	 * RobotMap.shootPIDOutput = output;
-	 * 
-	 * 
-	 * }
-	 */
+	// WAS ALREADY COMMENTED OUT
+	// @Override
+	// protected double returnPIDInput() {
+	// // TODO Auto-generated method stub
+	// return getShootSpeedLeft(); }
+	//
+	// @Override
+	// protected void usePIDOutput(double output) {
+	// RobotMap.shootPIDOutput = output;
+	// }
+
 	@Override
 	protected double returnPIDInput() {
 		// TODO Auto-generated method stub
