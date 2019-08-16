@@ -33,9 +33,9 @@ public class ShooterSubsystem extends Subsystem {
     // here. Call these from Commands.
 	
 	public static int deflectorMode = 0; // 0 down, 1 up
-	private static CANTalon rightShootMotor;
-	private static CANTalon leftShootMotor;
-	public static CANTalon indexerMotor; 
+	private static TalonSRX rightShootMotor;
+	private static TalonSRX leftShootMotor;
+	public static TalonSRX xerMotor; 
 	
 	public static FeedbackDeviceStatus status;
 	private static DigitalInput indexerLimitSwitch;

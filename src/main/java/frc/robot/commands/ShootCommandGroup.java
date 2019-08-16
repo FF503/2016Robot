@@ -4,10 +4,10 @@ import frc.robot.RobotMap;
 import frc.robot.subsystems.ArmSubsystem.ArmPosition;
 import frc.robot.subsystems.ShooterSubsystem;
 
-import auton.AutonIntakeCommand;
+/*import auton.AutonIntakeCommand;
 import auton.AutonShootCommand;
 import auton.AutonStopIntakeCommand;
-import auton.AutonStopShooterCommand;
+import auton.AutonStopShooterCommand;*/
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.WaitCommand;
 
@@ -35,15 +35,15 @@ public class ShootCommandGroup extends CommandGroup {
         // arm.
         addSequential(new LowerArmCommand());
        	addSequential(new RaiseDeflectorCommand());
-       	addSequential(new AutonShootCommand());
+       	//addSequential(new AutonShootCommand());
     	addSequential(new TurnPIDCommand());
     	addParallel(new GoToArmPosition(ArmPosition.LOAD,false, false));
     	addSequential(new WaitForShooterCommand());
-		addParallel(new AutonIntakeCommand());
+		//addParallel(new AutonIntakeCommand());
 		addSequential(new GoToArmPosition(ArmPosition.LOAD,true, false));
 		addSequential(new WaitCommand(RobotMap.INTAKE_TIME));
-		addSequential(new AutonStopShooterCommand());
-		addSequential(new AutonStopIntakeCommand());
+		//addSequential(new AutonStopShooterCommand());
+		//addSequential(new AutonStopIntakeCommand());
 		}
     }
 

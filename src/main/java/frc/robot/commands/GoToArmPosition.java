@@ -6,6 +6,8 @@ import frc.robot.OI.Mode;
 import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.ArmSubsystem.ArmPosition;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -96,13 +98,13 @@ public class GoToArmPosition extends Command {
     // Called once after isFinished returns true
     protected void end() {
 		ArmSubsystem.instance.disable();
-		ArmSubsystem.instance.armWinchMotor.set(0);	
+		ArmSubsystem.instance.armWinchMotor.set(ControlMode.PercentOutput,0);	
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
     	ArmSubsystem.instance.disable();
-		ArmSubsystem.instance.armWinchMotor.set(0);	
+		ArmSubsystem.instance.armWinchMotor.set(ControlMode.PercentOutput,0);	
     }
 }
