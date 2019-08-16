@@ -4,10 +4,10 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 public class RobotHardwareKitBot extends RobotHardware{
 	//Define objects for motors on this bot 
-	public CANTalon frontLeftMotor;
-	public CANTalon frontRightMotor;
-	public CANTalon backLeftMotor;
-	public CANTalon backRightMotor;
+	public TalonSRX frontLeftMotor;
+	public TalonSRX frontRightMotor;
+	public TalonSRX backLeftMotor;
+	public TalonSRX backRightMotor;
 	
 	@Override
 	public void initialize()
@@ -19,15 +19,15 @@ public class RobotHardwareKitBot extends RobotHardware{
 		//Robot.bot.getMotorObj(4).set(rightSpeed);  // back Right 
 		
 		//Assign motor variables to ports on robot 
-		frontRightMotor = new CANTalon(2);
-		backRightMotor = new CANTalon(1);
-		frontLeftMotor = new CANTalon(0);	
-		backLeftMotor = new CANTalon(3);
+		frontRightMotor = new TalonSRX(2);
+		backRightMotor = new TalonSRX(1);
+		frontLeftMotor = new TalonSRX(0);	
+		backLeftMotor = new TalonSRX(3);
 		
 	}
 	
 	@Override
-	public CANTalon getCANTalonObj(int MotorID) 
+	public TalonSRX getCANTalonObj(int MotorID) 
 	{
 	if(MotorID == 1) {
 			return frontLeftMotor;

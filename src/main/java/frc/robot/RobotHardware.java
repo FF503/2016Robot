@@ -11,12 +11,12 @@ public abstract class RobotHardware {
 	public abstract String getName();
 	//Define objects for motors on this bot 
 	
-	public CANTalon dummyMotor;
+	public TalonSRX dummyMotor;
 	public Spark dummySpark;
 	public DigitalInput dummyIO;
 	public RobotHardware bot;
-	private CANTalon rightShootMotor;
-	private CANTalon leftShootMotor;
+	private TalonSRX rightShootMotor;
+	private TalonSRX leftShootMotor;
 	
 
 	public void logSmartDashboard()
@@ -24,20 +24,20 @@ public abstract class RobotHardware {
 		SmartDashboard.putString("Current Robot", Robot.bot.getName());
 	}
 	
-	public CANTalon getCANTalonObj(int MotorID) 
+	public TalonSRX getCANTalonObj(int MotorID) 
 	{
 	    return dummyMotor;  	
 	}
 	
-	public CANTalon getRightShooterObj() 
+	public TalonSRX getRightShooterObj() 
 	{
 	    return dummyMotor;  	
 	}
-	public CANTalon getArmWinchMotor(){
+	public TalonSRX getArmWinchMotor(){
 		return dummyMotor;
 	}
 	
-	public CANTalon getLeftShooterObj() 
+	public TalonSRX getLeftShooterObj() 
 	{
 	    return dummyMotor;  	
 	}
@@ -45,7 +45,7 @@ public abstract class RobotHardware {
 	public Spark getSparkObj(int SparkID){
 		return dummySpark;
 	}
-	public CANTalon getIndexerObj(){
+	public TalonSRX getIndexerObj(){
 		return dummyMotor;
 	}
 	

@@ -4,11 +4,13 @@ import frc.robot.Robot;
 import frc.robot.RobotMap;
 //import frc.robot.RobotHardware;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+
 //import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
-import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+//import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  *
@@ -23,7 +25,7 @@ public class DrivetrainSubsystem extends PIDSubsystem{
 		setAbsoluteTolerance(RobotMap.DRIVE_PID_TOLERANCE);
 		setInputRange(-200,200);
 		setOutputRange(-.7, .7);
-		LiveWindow.addActuator("Drivetrain", "PIDSubsystem contoller", getPIDController());
+		//LiveWindow.zaddActuator("Drivetrain", "PIDSubsystem contoller", getPIDController());
 		
 		drivetrainSolenoid = new Solenoid(0);
 		driveEncoder = new Encoder(RobotMap.driveEncoderPortA, RobotMap.driveEncoderPortB, RobotMap.driveEncoderReverseDirection, RobotMap.encoderType);   
@@ -38,10 +40,10 @@ public class DrivetrainSubsystem extends PIDSubsystem{
 			leftSpeed = setDriveSensitivity(leftSpeed);
 			rightSpeed = setDriveSensitivity(rightSpeed);
 		}		
-		Robot.bot.getCANTalonObj(1).set(-leftSpeed);   // front Left 
-		Robot.bot.getCANTalonObj(2).set(rightSpeed);  // front Right 
-		Robot.bot.getCANTalonObj(3).set(-leftSpeed);   // back Left 
-		Robot.bot.getCANTalonObj(4).set(rightSpeed);  // back Right 
+		Robot.bot.getCANTalonObj(1).set(ControlMode.PercentOutput,-leftSpeed);   // front Left 
+		Robot.bot.getCANTalonObj(2).set(ControlMode.PercentOutput,rightSpeed);  // front Right 
+		Robot.bot.getCANTalonObj(3).set(ControlMode.PercentOutput,-leftSpeed);   // back Left 
+		Robot.bot.getCANTalonObj(4).set(ControlMode.PercentOutput,rightSpeed);  // back Right 
 	}
 	
 	private static double setDriveSensitivity(double input){
