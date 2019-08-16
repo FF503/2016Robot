@@ -6,14 +6,14 @@ import edu.wpi.first.wpilibj.Spark;
 
 public class RobotHardwarePracticeBot extends RobotHardware{
 	//Define objects for motors on this bot 
-	public static CANTalon frontLeftMotor;
-	public static CANTalon frontRightMotor;
-	public static CANTalon backLeftMotor;
-	public static CANTalon backRightMotor;
-	private static CANTalon rightShootMotor;
-	private static CANTalon leftShootMotor;
-	private static CANTalon indexerMotor;
-	private static CANTalon armWinchMotor;
+	public static TalonSRX frontLeftMotor;
+	public static TalonSRX frontRightMotor;
+	public static TalonSRX backLeftMotor;
+	public static TalonSRX backRightMotor;
+	private static TalonSRX rightShootMotor;
+	private static TalonSRX leftShootMotor;
+	private static TalonSRX indexerMotor;
+	private static TalonSRX armWinchMotor;
 	public static Spark indexer;
 	public static Spark intake;
 	public static DigitalInput intakeProximitySwitch;
@@ -22,21 +22,21 @@ public class RobotHardwarePracticeBot extends RobotHardware{
 	public void initialize()
 	{
 		//Assign motor variables to ports on robot 
-		frontLeftMotor = new CANTalon(3);
-		frontRightMotor = new CANTalon(1);
-		backLeftMotor = new CANTalon(6);
-		backRightMotor = new CANTalon(4);
-		armWinchMotor = new CANTalon(5);
+		frontLeftMotor = new TalonSRX(3);
+		frontRightMotor = new TalonSRX(1);
+		backLeftMotor = new TalonSRX(6);
+		backRightMotor = new TalonSRX(4);
+		armWinchMotor = new TalonSRX(5);
 		intake = new Spark(1);
 		
 		intakeProximitySwitch = new DigitalInput(0);
-		indexerMotor = new CANTalon(7);
-		rightShootMotor = new CANTalon(2); 
-		leftShootMotor = new CANTalon(0); 
+		indexerMotor = new TalonSRX(7);
+		rightShootMotor = new TalonSRX(2); 
+		leftShootMotor = new TalonSRX(0); 
 	}
 	
 	@Override
-	public CANTalon getCANTalonObj(int MotorID) 
+	public TalonSRX getCANTalonObj(int MotorID) 
 	{
 		if(MotorID == 1) {
 			return frontLeftMotor;
@@ -71,19 +71,19 @@ public class RobotHardwarePracticeBot extends RobotHardware{
 			return intakeProximitySwitch;
 		}
 	}
-	public CANTalon getRightShooterObj() 
+	public TalonSRX getRightShooterObj() 
 	{
 	    return rightShootMotor;  	
 	}
 	
-	public CANTalon getLeftShooterObj() 
+	public TalonSRX getLeftShooterObj() 
 	{
 	    return leftShootMotor;  	
 	}
-	public CANTalon getArmWinchMotor(){
+	public TalonSRX getArmWinchMotor(){
 		return armWinchMotor;
 	}
-	public CANTalon getIndexerObj() 
+	public TalonSRX getIndexerObj() 
 	{
 	    return indexerMotor;  	
 	}

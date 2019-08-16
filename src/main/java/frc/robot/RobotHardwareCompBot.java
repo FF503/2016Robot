@@ -6,14 +6,14 @@ import edu.wpi.first.wpilibj.Spark;
 
 public class RobotHardwareCompBot extends RobotHardware{
 	//Define objects for motors on this bot 
-	public static CANTalon frontLeftMotor;
-	public static CANTalon frontRightMotor;
-	public static CANTalon backLeftMotor;
-	public static CANTalon backRightMotor;
-	private static CANTalon rightShootMotor;
-	private static CANTalon leftShootMotor;
-	private static CANTalon indexerMotor;
-	private static CANTalon armWinchMotor;
+	public static TalonSRX frontLeftMotor;
+	public static TalonSRX frontRightMotor;
+	public static TalonSRX backLeftMotor;
+	public static TalonSRX backRightMotor;
+	private static TalonSRX rightShootMotor;
+	private static TalonSRX leftShootMotor;
+	private static TalonSRX indexerMotor;
+	private static TalonSRX armWinchMotor;
 	public static Spark indexer;
 	public static Spark intake;
 	public static DigitalInput intakeProximitySwitch;
@@ -22,22 +22,22 @@ public class RobotHardwareCompBot extends RobotHardware{
 	public void initialize()
 	{
 		//Assign motor variables to ports on robot 
-		frontLeftMotor = new CANTalon(0);    //why right drive  was 3 
-		frontRightMotor = new CANTalon(4);   //why left drive ?? was 1 
-		backLeftMotor = new CANTalon(5);     //why right drive ? was 6 
-		backRightMotor = new CANTalon(6);    //why left drive was 4   
-		armWinchMotor = new CANTalon(1);
+		frontLeftMotor = new TalonSRX(0);    //why right drive  was 3 
+		frontRightMotor = new TalonSRX(4);   //why left drive ?? was 1 
+		backLeftMotor = new TalonSRX(5);     //why right drive ? was 6 
+		backRightMotor = new TalonSRX(6);    //why left drive was 4   
+		armWinchMotor = new TalonSRX(1);
 		intake = new Spark(1);
 		
 		intakeProximitySwitch = new DigitalInput(0);//was 0
 		
-		indexerMotor = new CANTalon(3);
-		rightShootMotor = new CANTalon(7); //has encoder
-		leftShootMotor = new CANTalon(2); 
+		indexerMotor = new TalonSRX(3);
+		rightShootMotor = new TalonSRX(7); //has encoder
+		leftShootMotor = new TalonSRX(2); 
 	}
 	
 	@Override
-	public CANTalon getCANTalonObj(int MotorID) 
+	public TalonSRX getCANTalonObj(int MotorID) 
 	{
 		if(MotorID == 1) {
 			return frontLeftMotor;
@@ -72,19 +72,19 @@ public class RobotHardwareCompBot extends RobotHardware{
 			return null;
 		}
 	}
-	public CANTalon getIndexerObj(){
+	public TalonSRX getIndexerObj(){
 		return indexerMotor;
 	}
-	public CANTalon getRightShooterObj() 
+	public TalonSRX getRightShooterObj() 
 	{
 	    return rightShootMotor;  	
 	}
 	
-	public CANTalon getLeftShooterObj() 
+	public TalonSRX getLeftShooterObj() 
 	{
 	    return leftShootMotor;  	
 	}
-	public CANTalon getArmWinchMotor(){
+	public TalonSRX getArmWinchMotor(){
 		return armWinchMotor;
 	}
 	

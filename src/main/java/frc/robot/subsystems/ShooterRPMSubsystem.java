@@ -27,9 +27,9 @@ public class ShooterRPMSubsystem extends PIDSubsystem {
     // here. Call these from Commands.
 	
 	public static int deflectorMode = 0; // 0 down, 1 up
-	public static CANTalon rightShootMotor;
-	public static CANTalon leftShootMotor;
-	public static CANTalon indexerMotor; 
+	public static TalonSRX rightShootMotor;
+	public static TalonSRX leftShootMotor;
+	public static TalonSRX indexerMotor; 
 	
 	public static FeedbackDeviceStatus status;
 	//private static DigitalInput indexerProximitySwitch;
