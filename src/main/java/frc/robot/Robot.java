@@ -8,8 +8,8 @@ import frc.robot.commands.TeleopArmCommand;
 import frc.robot.commands.TeleopClimbCommand;
 import frc.robot.commands.TeleopExtenderCommand;
 import frc.robot.subsystems.ArmSubsystem;
-import frc.robot.subsystems.AutonSelectorSubsystem;
-import frc.robot.subsystems.MicrosoftCameraSubsystem;
+// import frc.robot.subsystems.AutonSelectorSubsystem;
+// import frc.robot.subsystems.MicrosoftCameraSubsystem;
 import frc.robot.subsystems.NavSensorSubsystem;
 import frc.robot.subsystems.NewDrivetrainSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
@@ -47,15 +47,15 @@ public class Robot extends IterativeRobot {
     	bot.logSmartDashboard();         /*put botname on smartdashboard */
     	
     	if (bot.usesDriveCamera()) {
-    		MicrosoftCameraSubsystem.instance.setQuality(50);
-    		MicrosoftCameraSubsystem.instance.startCapture();
+    		// MicrosoftCameraSubsystem.instance.setQuality(50);
+    		// MicrosoftCameraSubsystem.instance.startCapture();
     	}
     	
     	if (bot.usesNavX()) {
     		NavSensorSubsystem.ahrs.reset();	
     		RobotMap.initialHeading = NavSensorSubsystem.ahrs.getFusedHeading();
     	}
-    	AutonSelectorSubsystem.instance.chooseAuton();
+    	// AutonSelectorSubsystem.instance.chooseAuton();
     	OI.initialize();
     }
 	
@@ -71,7 +71,7 @@ public class Robot extends IterativeRobot {
     	time.start();
     	OI.mode = Mode.AUTON;
     	RobotMap.INIT_ANGLE = NavSensorSubsystem.ahrs.getCompassHeading();
-    	AutonSelectorSubsystem.instance.runSelectedAuton();
+    	// AutonSelectorSubsystem.instance.runSelectedAuton();
     	NavSensorSubsystem.ahrs.reset();
     	NewDrivetrainSubsystem.instance.resetEncoder();
     	// schedule the autonomous command (example)

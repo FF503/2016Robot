@@ -4,6 +4,8 @@ import frc.robot.RobotMap;
 import frc.robot.subsystems.NavSensorSubsystem;
 import frc.robot.subsystems.NewDrivetrainSubsystem;
 import frc.robot.subsystems.VisionProcessor;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.sun.jdi.event.BreakpointEvent;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -17,6 +19,7 @@ public class AimCommand extends Command {
 	double lowTolerance;
 	double midTolerance;
 	boolean direction;
+	static NeutralMode brake1;
 	
     public AimCommand() { 	
         // Use requires() here to declare subsystem dependencies
@@ -82,7 +85,7 @@ public class AimCommand extends Command {
     // Called once after isFinished returns true
     protected void end() {
     	NewDrivetrainSubsystem.instance.tankDrive(0, 0, true);
-    	NewDrivetrainSubsystem.motorBrake(true);
+    	NewDrivetrainSubsystem.instance.motorBrake(NeutralMode.Brake);
     	//NewDrivetrainSubsystem.instance.tankDrive(0, 0, true);
     }
 

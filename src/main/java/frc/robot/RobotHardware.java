@@ -24,7 +24,7 @@ public abstract class RobotHardware {
 		SmartDashboard.putString("Current Robot", Robot.bot.getName());
 	}
 	
-	public TalonSRX getCANTalonObj(int MotorID) 
+	public TalonSRX getTalonSRXObj(int MotorID) 
 	{
 	    return dummyMotor;  	
 	}

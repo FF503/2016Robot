@@ -36,7 +36,7 @@ public class RobotHardwarePracticeBot extends RobotHardware{
 	}
 	
 	@Override
-	public TalonSRX getCANTalonObj(int MotorID) 
+	public TalonSRX getTalonSRXObj(int MotorID) 
 	{
 		if(MotorID == 1) {
 			return frontLeftMotor;

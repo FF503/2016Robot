@@ -4,6 +4,8 @@ import frc.robot.OI;
 import frc.robot.RobotMap;
 import frc.robot.subsystems.ShooterSubsystem;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -27,14 +29,14 @@ public class IndexerLoadCommand extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	if(time.get()< .5){
-    		ShooterSubsystem.indexerMotor.set(-.4);
+    		ShooterSubsystem.indexerMotor.set(ControlMode.PercentOutput, -.4);
     		
     		if(OI.getReverseIndexerButton()){
     			end();
     		}
     	}
     	else if(ShooterSubsystem.instance.getIndexSwitch()){
-        	ShooterSubsystem.indexerMotor.set(-.4);
+        	ShooterSubsystem.indexerMotor.set(ControlMode.PercentOutput, -.4);
         	
         	if(OI.getReverseIndexerButton()){
             		end();
@@ -56,7 +58,7 @@ public class IndexerLoadCommand extends Command {
     // Called once after isFinished returns true
     protected void end() {
     	RobotMap.indexerRunning = false;
-    	ShooterSubsystem.indexerMotor.set(0);
+    	ShooterSubsystem.indexerMotor.set(ControlMode.PercentOutput, 0);
     }
 
     // Called when another command which requires one or more of the same
