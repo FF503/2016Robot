@@ -3,6 +3,7 @@ package frc.robot.subsystems;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -18,7 +19,7 @@ public class ArmSubsystem extends PIDSubsystem{
 	//CANTalon for climber arm // come back for more info on power takeoff
 	//one spike relay to push hooks out = extend
 	
-	public com.ctre.phoenix.motorcontrol.can.TalonSRX armWinchMotor;
+	public TalonSRX armWinchMotor;
 	private static Spark extender;
 	private static DoubleSolenoid armWinchShifter;
 	public static Encoder armAngleEncoder;
@@ -110,10 +111,10 @@ public class ArmSubsystem extends PIDSubsystem{
 		
 		while(instance.getArmAngleEncoderError(position)>RobotMap.ARM_PID_RANGE){
 			if(getArmEncoderCounts()> position.position){
-				armWinchMotor.set(-RobotMap.ARM_SPEED);
+				armWinchMotor.set(ControlMode.PercentOutput, RobotMap.ARM_SPEED);
 			}
 			else if(getArmEncoderCounts()< position.position){
-				armWinchMotor.set(RobotMap.ARM_SPEED);
+				armWinchMotor.set(ControlMode.PercentOutput, RobotMap.ARM_SPEED);
 			}
 			if(ArmSubsystem.instance.getArmLowerLimitSwitch()){
 				//ArmSubsystem.armAngleEncoder.reset();
@@ -125,11 +126,11 @@ public class ArmSubsystem extends PIDSubsystem{
 		ArmSubsystem.instance.enable();
 		
 		while(!ArmSubsystem.instance.onTarget()){
-			armWinchMotor.set(RobotMap.armPIDOutput);
+			armWinchMotor.set(ControlMode.PercentOutput, RobotMap.armPIDOutput);
 		}
 		
 		ArmSubsystem.instance.disable();
-		armWinchMotor.set(0);		
+		armWinchMotor.set(ControlMode.PercentOutput, 0);		
 	}
 	
 	//public double getExtenderPosition(){
@@ -155,7 +156,7 @@ public class ArmSubsystem extends PIDSubsystem{
 	}
 	
 	public void setArmWinchMotor(double power){
-		armWinchMotor.set(power);
+		armWinchMotor.set(ControlMode.PercentOutput, power);
 		//SmartDashboard.putNumber("ARM POWER", power);
 	}
 	

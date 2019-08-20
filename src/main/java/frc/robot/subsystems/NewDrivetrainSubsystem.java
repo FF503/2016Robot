@@ -3,14 +3,23 @@ package frc.robot.subsystems;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
 
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 /**
  *
  */
 public class NewDrivetrainSubsystem extends PIDSubsystem {
+
+	public TalonSRX frontLeftMotor;
+	public TalonSRX frontRightMotor;
+	public TalonSRX backLeftMotor;
+	public TalonSRX backRightMotor;
+
 	private static Solenoid drivetrainSolenoid;
 	public static Encoder driveEncoder;
 	private static double currentForward =0;
@@ -27,6 +36,11 @@ public class NewDrivetrainSubsystem extends PIDSubsystem {
 		//getPIDController().setContinuous();
 		setOutputRange(-.8, .8);
 		drivetrainSolenoid = new Solenoid(0);
+
+		frontLeftMotor = Robot.bot.getTalonSRXObj(1);
+		backLeftMotor = Robot.bot.getTalonSRXObj(3);
+		frontRightMotor = Robot.bot.getTalonSRXObj(2);
+		backRightMotor = Robot.bot.getTalonSRXObj(4);
 	}
 	
 	public static NewDrivetrainSubsystem instance = new NewDrivetrainSubsystem();
@@ -39,17 +53,17 @@ public class NewDrivetrainSubsystem extends PIDSubsystem {
 		}	
 		SmartDashboard.putNumber("leftSpeed", leftSpeed);
 		SmartDashboard.putNumber("rightSpeed", rightSpeed);
-		Robot.bot.getCANTalonObj(1).set(-leftSpeed);   // front Left 
-		Robot.bot.getCANTalonObj(2).set(rightSpeed);  // front Right 
-		Robot.bot.getCANTalonObj(3).set(-leftSpeed);   // back Left 
-		Robot.bot.getCANTalonObj(4).set(rightSpeed);  // back Right 
+		frontLeftMotor.set(ControlMode.PercentOutput, -leftSpeed);   // front Left 
+		frontRightMotor.set(ControlMode.PercentOutput,rightSpeed);  // front Right 
+		backLeftMotor.set(ControlMode.PercentOutput,-leftSpeed);   // back Left 
+		backRightMotor.set(ControlMode.PercentOutput, rightSpeed);  // back Right 
 	}
 	
-	public static void motorBrake(boolean bool){
-		Robot.bot.getCANTalonObj(1).enableBrakeMode(bool);
-		Robot.bot.getCANTalonObj(2).enableBrakeMode(bool);
-		Robot.bot.getCANTalonObj(3).enableBrakeMode(bool);
-		Robot.bot.getCANTalonObj(4).enableBrakeMode(bool);
+	public void motorBrake(NeutralMode neutralMode){
+		frontLeftMotor.setNeutralMode(neutralMode);
+		frontRightMotor.setNeutralMode(neutralMode);
+		backLeftMotor.setNeutralMode(neutralMode);
+		backRightMotor.setNeutralMode(neutralMode);
 	}
 	
 	private double setDriveSensitivity(double input){

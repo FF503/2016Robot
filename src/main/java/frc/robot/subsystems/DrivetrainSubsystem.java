@@ -40,10 +40,10 @@ public class DrivetrainSubsystem extends PIDSubsystem{
 			leftSpeed = setDriveSensitivity(leftSpeed);
 			rightSpeed = setDriveSensitivity(rightSpeed);
 		}		
-		Robot.bot.getCANTalonObj(1).set(ControlMode.PercentOutput,-leftSpeed);   // front Left 
-		Robot.bot.getCANTalonObj(2).set(ControlMode.PercentOutput,rightSpeed);  // front Right 
-		Robot.bot.getCANTalonObj(3).set(ControlMode.PercentOutput,-leftSpeed);   // back Left 
-		Robot.bot.getCANTalonObj(4).set(ControlMode.PercentOutput,rightSpeed);  // back Right 
+		Robot.bot.getTalonSRXObj(1).set(ControlMode.PercentOutput,-leftSpeed);   // front Left 
+		Robot.bot.getTalonSRXObj(2).set(ControlMode.PercentOutput,rightSpeed);  // front Right 
+		Robot.bot.getTalonSRXObj(3).set(ControlMode.PercentOutput,-leftSpeed);   // back Left 
+		Robot.bot.getTalonSRXObj(4).set(ControlMode.PercentOutput,rightSpeed);  // back Right 
 	}
 	
 	private static double setDriveSensitivity(double input){

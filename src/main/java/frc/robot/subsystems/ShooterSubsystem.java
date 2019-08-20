@@ -9,12 +9,14 @@ import frc.robot.Robot;
 import frc.robot.RobotMap;
 
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX.FeedbackDevice;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX.FeedbackDeviceStatus;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX.TalonControlMode;
+import com.ctre.phoenix.motorcontrol.ControlMode;
+// import com.ctre.phoenix.motorcontrol.can.TalonSRX.FeedbackDevice;
+// import com.ctre.phoenix.motorcontrol.can.TalonSRX.FeedbackDeviceStatus;
+// import com.ctre.phoenix.motorcontrol.can.TalonSRX.TalonControlMode;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -35,6 +37,7 @@ public class ShooterSubsystem extends Subsystem {
 	public static int deflectorMode = 0; // 0 down, 1 up
 	private static TalonSRX rightShootMotor;
 	private static TalonSRX leftShootMotor;
+	private static TalonSRX indexerMotor;
 	public static TalonSRX xerMotor; 
 	
 	public static FeedbackDeviceStatus status;
@@ -102,12 +105,12 @@ public class ShooterSubsystem extends Subsystem {
     public void setIndexer(boolean run) {
       	if(run){
     		SmartDashboard.putString("Indexer Running", "true");
-    		indexerMotor.set(-.5);    
+    		indexerMotor.set(ControlMode.PercentOutput, -.5);    
     		RobotMap.indexerRunning = true;
     	}
     	else{
     		SmartDashboard.putString("Indexer Running", "false");
-    		indexerMotor.set(0);
+    		indexerMotor.set(ControlMode.PercentOutput, 0);
     		RobotMap.indexerRunning = false;
     	}
     }
@@ -123,7 +126,7 @@ public class ShooterSubsystem extends Subsystem {
     	time.start();
     	RobotMap.indexerRunning = true;
     	while(!getIndexSwitch() || time.get()< .5){
-    		indexerMotor.set(-.4);
+    		indexerMotor.set(ControlMode.PercentOutput, -.4);
     		if(OI.getShootButton()){
     			if(RobotMap.shooterRunning){
     				runShooter(false);
@@ -137,7 +140,7 @@ public class ShooterSubsystem extends Subsystem {
     		}
     	}
     	while(getIndexSwitch()){
-    		indexerMotor.set(-.4);
+    		indexerMotor.set(ControlMode.PercentOutput, -.4);
     		if(OI.getShootButton()){
     			if(RobotMap.shooterRunning){
     				runShooter(false);
@@ -152,13 +155,13 @@ public class ShooterSubsystem extends Subsystem {
     		
     	}
     	RobotMap.indexerRunning = false;
-    	indexerMotor.set(0);
+    	indexerMotor.set(ControlMode.PercentOutput, 0);
     }
     public void indexerReverse(){
-    	indexerMotor.set(.4);
+    	indexerMotor.set(ControlMode.PercentOutput, .4);
     }
     public void indexerStop(){
-    	indexerMotor.set(0);
+    	indexerMotor.set(ControlMode.PercentOutput, 0);
     }
     
   
