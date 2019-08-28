@@ -28,15 +28,17 @@ public class IndexerLoadCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(time.get()< .5){
+    	if(time.get()< .2){
+            System.out.println(ShooterSubsystem.instance.getIndexSwitch());
     		ShooterSubsystem.indexerMotor.set(ControlMode.PercentOutput, -.4);
     		
     		if(OI.getReverseIndexerButton()){
     			end();
     		}
     	}
-    	else if(ShooterSubsystem.instance.getIndexSwitch()){
-        	ShooterSubsystem.indexerMotor.set(ControlMode.PercentOutput, -.4);
+    	if(ShooterSubsystem.instance.getIndexSwitch()){
+            System.out.println("Motor should be stopped");
+        	ShooterSubsystem.indexerMotor.set(ControlMode.PercentOutput, 0.0);
         	
         	if(OI.getReverseIndexerButton()){
             		end();

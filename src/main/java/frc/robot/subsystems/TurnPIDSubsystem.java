@@ -27,13 +27,13 @@ public class TurnPIDSubsystem extends PIDSubsystem {
         //setDefaultCommand(new MySpecialCommand());
     }
     
-    protected double returnPIDInput() {
-    	return NavSensorSubsystem.ahrs.getYaw();
-        // Return your input value for the PID loop
-        // e.g. a sensor, like a potentiometer:
-        // yourPot.getAverageVoltage() / kYourMaxVoltage;
+    // protected double returnPIDInput() {
+    // 	// return NavSensorSubsystem.ahrs.getYaw();
+    //     // Return your input value for the PID loop
+    //     // e.g. a sensor, like a potentiometer:
+    //     // yourPot.getAverageVoltage() / kYourMaxVoltage;
     	
-    }
+    // }
     
     protected void usePIDOutput(double output) {
     	if(onTarget()){
@@ -50,5 +50,10 @@ public class TurnPIDSubsystem extends PIDSubsystem {
     	RobotMap.autonTurnPIDOutput = output;
         // Use output to drive your system, like a motor
         // e.g. yourMotor.set(output);
+    }
+
+    @Override
+    protected double returnPIDInput() {
+        return 0;
     }
 }

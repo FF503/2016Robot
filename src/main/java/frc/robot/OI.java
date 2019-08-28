@@ -74,12 +74,12 @@ public class OI {
 	private static JoystickButton goToLoadButton = new JoystickButton(operatorJoystick, 1);
 	private static JoystickButton goToIntakeButton = new JoystickButton(operatorJoystick, 2);
 	//private static JoystickButton intakeButton = new JoystickButton(driverJoystick, 10);
-	private static JoystickButton deflectorButton = new JoystickButton(operatorJoystick, 3);
+	// private static JoystickButton deflectorButton = new JoystickButton(operatorJoystick, 3);
 	//private static JoystickButton goToClimbButton = new JoystickButton(operatorJoystick, 3);
 	private static JoystickButton reverseIndexerButton = new JoystickButton(operatorJoystick, 4);
-	private static Button indexerButton = new AxisButton(operatorJoystick, 3);
+	private static JoystickButton indexerButton = new JoystickButton(operatorJoystick, 3);
 
-	private static Button shooterButton = new AxisButton(operatorJoystick, 2);	
+	private static JoystickButton shooterButton = new JoystickButton(operatorJoystick, 2);	
 	
 	private static JoystickButton extenderOutButton = new JoystickButton(operatorJoystick, 5);	
 	private static JoystickButton climbButton = new JoystickButton(operatorJoystick, 6);
@@ -99,7 +99,7 @@ public class OI {
 		expelButton.whenPressed(new ExpelBallCommand());
 	    indexerButton.whenReleased(new IndexerLoadCommand());
 		shooterButton.whenReleased(new ToggleShootCommand());		
-		deflectorButton.whenPressed(new DeflectorCommand());
+		// deflectorButton.whenPressed(new DeflectorCommand());
 		shiftToLowGearButton.whenReleased(new ShiftToLowGearCommand());
 		shiftToHighGearButton.whenReleased(new ShiftToHighGearCommand());
 		shooterManualButton.whenReleased(new ToggleManualShootCommand());
