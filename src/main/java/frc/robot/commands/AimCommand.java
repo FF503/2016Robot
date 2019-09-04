@@ -3,7 +3,7 @@ package frc.robot.commands;
 import frc.robot.RobotMap;
 import frc.robot.subsystems.NavSensorSubsystem;
 import frc.robot.subsystems.NewDrivetrainSubsystem;
-import frc.robot.subsystems.VisionProcessor;
+// import frc.robot.subsystems.VisionProcessor;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.sun.jdi.event.BreakpointEvent;
 
@@ -29,7 +29,7 @@ public class AimCommand extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	
-    	this.degrees = -VisionProcessor.instance.getAngle();
+    	// this.degrees = -VisionProcessor.instance.getAngle();
     	if(Math.abs(this.degrees)< 1){
     		this.degrees =0;
     	}

@@ -13,7 +13,7 @@ import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.NavSensorSubsystem;
 import frc.robot.subsystems.NewDrivetrainSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
-import frc.robot.subsystems.VisionProcessor;
+// import frc.robot.subsystems.VisionProcessor;
 
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -147,7 +147,7 @@ public class Robot extends IterativeRobot {
      */
     public void teleopPeriodic() {
     	//SmartDashboard.putNumber("Current current", panel.getTotalCurrent());
-    	VisionProcessor.instance.refresh();
+    	// VisionProcessor.instance.refresh();
     	
 
     	if (bot.usesNavX()) {

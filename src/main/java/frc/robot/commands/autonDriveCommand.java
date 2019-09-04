@@ -3,7 +3,7 @@ package frc.robot.commands;
 import frc.robot.RobotMap;
 import frc.robot.subsystems.NavSensorSubsystem;
 import frc.robot.subsystems.NewDrivetrainSubsystem;
-import frc.robot.subsystems.VisionProcessor;
+// import frc.robot.subsystems.VisionProcessor;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
@@ -28,21 +28,21 @@ public class autonDriveCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	angle = VisionProcessor.instance.getAngle();
-    	SmartDashboard.putNumber("auton drive", angle);
-    	if(VisionProcessor.instance.getCameraDistance()> 7){
-    		NewDrivetrainSubsystem.instance.arcadeDrive(-.60,angle *.045, false); //.025  .030
-    	}
-    	else if(Math.abs(NavSensorSubsystem.ahrs.getYaw()) > 3){
-    		if(NavSensorSubsystem.ahrs.getYaw()<-3){
-    			NewDrivetrainSubsystem.instance.arcadeDrive(0, .3, false);
+    	// angle = VisionProcessor.instance.getAngle();
+    	// SmartDashboard.putNumber("auton drive", angle);
+    	// if(VisionProcessor.instance.getCameraDistance()> 7){
+    	// 	NewDrivetrainSubsystem.instance.arcadeDrive(-.60,angle *.045, false); //.025  .030
+    	// }
+    	// else if(Math.abs(NavSensorSubsystem.ahrs.getYaw()) > 3){
+    	// 	if(NavSensorSubsystem.ahrs.getYaw()<-3){
+    	// 		NewDrivetrainSubsystem.instance.arcadeDrive(0, .3, false);
     			
-    		}
-    		else if(NavSensorSubsystem.ahrs.getYaw() > 3){
-    			NewDrivetrainSubsystem.instance.arcadeDrive(0, -.3, false);
-    		}
+    	// 	}
+    	// 	else if(NavSensorSubsystem.ahrs.getYaw() > 3){
+    	// 		NewDrivetrainSubsystem.instance.arcadeDrive(0, -.3, false);
+    	// 	}
     		
-    	}
+    	// }
     	
     	//NewDrivetrainSubsystem.instance.arcadeDrive(-.60,angle *.037, false); //.04
     	
@@ -52,8 +52,8 @@ public class autonDriveCommand extends Command {
     protected boolean isFinished() {
     	/*SmartDashboard.putNumber("**ANGLE TO TARGET", VisionProcessor.instance.getAngle());
     	SmartDashboard.putNumber("**Auton Distance to Target",VisionProcessor.instance.getCameraDistance());*/
-    	return (VisionProcessor.instance.getCameraDistance()< 7.0&& Math.abs(NavSensorSubsystem.ahrs.getYaw()) <3 )|| timer.get() > 3.5;//10
-       // return false;
+    	// return (VisionProcessor.instance.getCameraDistance()< 7.0&& Math.abs(NavSensorSubsystem.ahrs.getYaw()) <3 )|| timer.get() > 3.5;//10
+       return true;
     	
     }
 

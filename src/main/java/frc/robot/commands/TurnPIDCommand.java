@@ -3,8 +3,8 @@ package frc.robot.commands;
 import frc.robot.RobotMap;
 import frc.robot.subsystems.NavSensorSubsystem;
 import frc.robot.subsystems.NewDrivetrainSubsystem;
-import frc.robot.subsystems.VisionProcessor;
-import frc.robot.subsystems.VisionSubsystem;
+// import frc.robot.subsystems.VisionProcessor;
+// import frc.robot.subsystems.VisionSubsystem;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
@@ -24,16 +24,16 @@ public class TurnPIDCommand extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	this.angle = VisionProcessor.instance.getAngle();
+    	// this.angle = VisionProcessor.instance.getAngle();
     	timer = new Timer();
     	timer.start();
     	NavSensorSubsystem.ahrs.reset();
-    	VisionSubsystem.instance.setSetpoint(angle);
+    	// VisionSubsystem.instance.setSetpoint(angle);
     	
     	
-    	VisionSubsystem.instance.setSetpoint(angle);
+    	// VisionSubsystem.instance.setSetpoint(angle);
     	SmartDashboard.putNumber("ANGLE", angle);
-    	VisionSubsystem.instance.enable();
+    	// VisionSubsystem.instance.enable();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -55,7 +55,7 @@ public class TurnPIDCommand extends Command {
     protected void end() {
     	SmartDashboard.putString("TurnPIDCommand Ended", "Yes");
     	NewDrivetrainSubsystem.instance.tankDrive(0, 0, true);
-    	VisionSubsystem.instance.disable();
+    	// VisionSubsystem.instance.disable();
     }
 
     // Called when another command which requires one or more of the same
