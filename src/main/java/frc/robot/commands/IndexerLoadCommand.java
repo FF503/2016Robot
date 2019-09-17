@@ -25,19 +25,19 @@ public class IndexerLoadCommand extends Command {
     protected void initialize() {
     	//ShooterSubsystem.instance.indexerSpin();
         RobotMap.indexerRunning = true;
-        time.reset();
-        time.start();
-        while(time.get() < 0.2) {
-            ShooterSubsystem.indexerMotor.set(ControlMode.PercentOutput, -.4);
-        }
-        ShooterSubsystem.indexerMotor.set(ControlMode.PercentOutput, 0.0);
+       // time.reset();
+       // time.start();
+       // while(time.get() < 0.2) {
+         //   ShooterSubsystem.indexerMotor.set(ControlMode.PercentOutput, -.4);
+        //}
+        //ShooterSubsystem.indexerMotor.set(ControlMode.PercentOutput, 0.0);
 
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
 
-        SmartDashboard.putBoolean("Indexor Switch:",ShooterSubsystem.instance.getIndexSwitch());
+        SmartDashboard.putBoolean("Indexer Switch:",ShooterSubsystem.instance.getIndexSwitch());
         
     	// if(time.get()< .2){
         //     System.out.println(ShooterSubsystem.instance.getIndexSwitch());
@@ -62,15 +62,17 @@ public class IndexerLoadCommand extends Command {
     	// 	end();
         // }
 
-        if(OI.getReverseIndexerButton()){
-            end();
-        }
-        if(ShooterSubsystem.instance.getIndexSwitch()){
-            ShooterSubsystem.indexerMotor.set(ControlMode.PercentOutput, 0);
-            IsDone = true;
-        } else {
-            ShooterSubsystem.indexerMotor.set(ControlMode.PercentOutput, -.4);
-        }
+        // if(OI.getReverseIndexerButton()){
+        //     end();
+        // }
+        // if(ShooterSubsystem.instance.getIndexSwitch()){
+        //     ShooterSubsystem.indexerMotor.set(ControlMode.PercentOutput, 0);
+        //     IsDone = true;
+        // } else {
+        //     ShooterSubsystem.indexerMotor.set(ControlMode.PercentOutput, -.4);
+        // }
+                ShooterSubsystem.indexerMotor.set(ControlMode.PercentOutput,-.4);
+            
 
         
     }

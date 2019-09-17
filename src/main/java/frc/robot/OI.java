@@ -97,7 +97,7 @@ public class OI {
 	
 		intakeButton.whenPressed(new IntakeBallCommand());
 		expelButton.whenPressed(new ExpelBallCommand());
-	    indexerButton.whenReleased(new IndexerLoadCommand());
+	    indexerButton.whenPressed(new IndexerLoadCommand());
 		shooterButton.whenReleased(new ToggleShootCommand());		
 		// deflectorButton.whenPressed(new DeflectorCommand());
 		shiftToLowGearButton.whenReleased(new ShiftToLowGearCommand());
